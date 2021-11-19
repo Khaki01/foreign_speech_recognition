@@ -72,18 +72,9 @@ def recongize_vosk(audio_filename, text_filename, model_path='model') -> None:
     print(f"Text successfully saved")
 
 
-def main():
-    if len(sys.argv) == 1:  # if parameter wasn't specified
-        print('Set filename as a parameter. For example:')
-        print('>>> python script_vosk.py filename.wav')
-        sys.exit()
-    elif len(sys.argv) == 2:
-        audio_filename = sys.argv[1]
-        text_filename = audio_filename[:-3] + 'txt'
-    else:
-        audio_filename = sys.argv[1]
-        text_filename = sys.argv[2]
-
+def main(audio_filename):
+    text_filename = audio_filename[:-3] + 'txt'
+    
     if not os.path.exists(audio_filename):
         print(f"File '{audio_filename}' doesn't exist")
         sys.exit()
@@ -93,7 +84,4 @@ def main():
         sys.exit()
 
     recongize_vosk(audio_filename, text_filename)
-
-
-if __name__ == "__main__":
-    main()
+    return
